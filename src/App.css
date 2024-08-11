@@ -14,3 +14,10 @@
   gap: 10px;
   list-style: none;
 }
+
+.medal-result {
+  display: flex;
+  gap: 20%;
+  align-items: center;
+  list-style: none;
+}

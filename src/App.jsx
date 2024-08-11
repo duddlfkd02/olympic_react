@@ -17,7 +17,6 @@ const App = () => {
       silver: silver,
       bronze: bronze,
     };
-    console.log(newCountry);
     setCountries([...countries, newCountry]);
   };
 
@@ -42,8 +41,27 @@ const App = () => {
     const deleteCountry = countries.filter((country, index) => {
       return e !== index;
     });
-    console.log(deleteCountry);
     setCountries([...deleteCountry]);
+  };
+
+  //나라 업데이트 함수
+  const updateCountryHandler = (e) => {
+    e.preventDefault();
+    //나라 이름이 동일하면
+    //updatedCountry로 state 바꾸기
+    const updatedCountry = countries.find((item) => item.country === country);
+    if (updatedCountry) {
+      countries.map((newCountry) => {
+        return newCountry.gold, newCountry.silver, newCountry.bronze;
+      });
+    }
+    console.log(updatedCountry);
+    // find로 나라 이름을 찾은 후 그 값을 새로운 금,은,동으로 바꿔주려고 했음
+    // 동일한 나라이름으로 하고 메달 수를 바꿔도 메달 수는 변함 없음
+    // 나라이름을 바꾸면 undefined가 뜸
+    // 메달 수를 바꿔서 업데이트하는 방법
+    // setCountries([...countries, updatedCountry]);
+    // setCountries([...updatedCountry]);
   };
 
   return (
@@ -72,22 +90,20 @@ const App = () => {
             <input type="number" value={bronze} onChange={bronzeMedalCounter} />
           </li>
           <button onClick={addCountryHandler}>국가 추가</button>
-          <button>업데이트</button>
+          <button onClick={updateCountryHandler}>업데이트</button>
         </ul>
       </form>
 
       <>
-        <ul>
-          {countries.map((country, index) => (
-            <li key={index}>
-              {country.country}
-              {country.gold}
-              {country.silver}
-              {country.bronze}
-              <button onClick={() => deleteCountryhandler(index)}>삭제</button>
-            </li>
-          ))}
-        </ul>
+        {countries.map((country, index) => (
+          <ul key={index} className="medal-result">
+            <li className="medal-result-list">{country.country}</li>
+            <li className="medal-result-list">{country.gold}</li>
+            <li className="medal-result-list">{country.silver}</li>
+            <li className="medal-result-list">{country.bronze}</li>
+            <button onClick={() => deleteCountryhandler(index)}>삭제</button>
+          </ul>
+        ))}
       </>
     </div>
   );
