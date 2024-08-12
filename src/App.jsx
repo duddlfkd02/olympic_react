@@ -18,7 +18,12 @@ const App = () => {
       silver: silver,
       bronze: bronze,
     };
-    setCountries([...countries, newCountry]);
+    const goldSorted = [...countries, newCountry].sort(
+      (a, b) => b.gold - a.gold
+    );
+    // console.log(goldSorted);
+    // setCountries([...countries, newCountry]);
+    setCountries(goldSorted);
   };
 
   // 국가 입력(input) 함수
@@ -42,8 +47,7 @@ const App = () => {
     const deleteCountry = countries.filter((country) => {
       return country.id !== id;
     });
-    setCountries([...deleteCountry]);
-    // alert("삭제되었습니다.");
+    setCountries(deleteCountry);
   };
 
   //나라 업데이트 함수
@@ -56,7 +60,8 @@ const App = () => {
         return item;
       }
     });
-    setCountries(newCountries);
+    const goldSorted = newCountries.sort((a, b) => b.gold - a.gold);
+    setCountries(goldSorted);
   };
 
   return (
@@ -70,6 +75,7 @@ const App = () => {
               type="text"
               value={country}
               onChange={changeCountryHandler}
+              placeholder="나라명을 입력하세요."
             />
           </li>
           <li>
