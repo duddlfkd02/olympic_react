@@ -8,16 +8,52 @@
   text-align: center;
 }
 
+h1 {
+  color: #1926ad;
+}
+
+input {
+  height: 30px;
+  border-radius: 5px;
+  padding: 0 10px;
+  border: 1px solid #e5e5e5;
+}
+
+button {
+  width: 120px;
+  height: 35px;
+  line-height: 35px;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  background: #ffc64b;
+  cursor: pointer;
+}
+
 .list-box {
   display: flex;
   justify-content: space-between;
+  align-items: end;
   gap: 10px;
   list-style: none;
 }
 
 .medal-result {
   display: flex;
-  gap: 20%;
   align-items: center;
   list-style: none;
+  padding-left: 0;
+}
+
+.medal-result-list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  text-align: center;
+  font-size: 14px;
+}
+
+.medal-result-list > p {
+  width: calc(100% / 4);
 }
