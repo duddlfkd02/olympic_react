@@ -12,6 +12,7 @@ const App = () => {
   const addCountryHandler = (e) => {
     e.preventDefault();
     const newCountry = {
+      id: new Date().getTime(),
       country: country,
       gold: gold,
       silver: silver,
@@ -37,12 +38,12 @@ const App = () => {
   };
 
   // 나라 삭제 함수
-  const deleteCountryhandler = (e) => {
-    const deleteCountry = countries.filter((country, index) => {
-      return e !== index;
+  const deleteCountryhandler = (id) => {
+    const deleteCountry = countries.filter((country) => {
+      return country.id !== id;
     });
     setCountries([...deleteCountry]);
-    alert("삭제되었습니다.");
+    // alert("삭제되었습니다.");
   };
 
   //나라 업데이트 함수
@@ -93,8 +94,8 @@ const App = () => {
       </form>
 
       <div>
-        {countries.map((country, index) => (
-          <ul key={index} className="medal-result">
+        {countries.map((country) => (
+          <ul key={country.id} className="medal-result">
             <li className="medal-result-list">
               <p>{country.country}</p>
               <p>{country.gold}</p>
@@ -103,8 +104,7 @@ const App = () => {
               <Button
                 type="button"
                 color="#ff6f4b"
-                onClick={() => deleteCountryhandler(index)}
-                className="deleteBtn"
+                onClick={() => deleteCountryhandler(country.id)}
               >
                 삭제
               </Button>
