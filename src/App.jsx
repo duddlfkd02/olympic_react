@@ -42,26 +42,20 @@ const App = () => {
       return e !== index;
     });
     setCountries([...deleteCountry]);
+    alert("삭제되었습니다.");
   };
 
   //나라 업데이트 함수
-  const updateCountryHandler = (e) => {
-    e.preventDefault();
-    //나라 이름이 동일하면
-    //updatedCountry로 state 바꾸기
-    const updatedCountry = countries.find((item) => item.country === country);
-    if (updatedCountry) {
-      countries.map((newCountry) => {
-        return newCountry.gold, newCountry.silver, newCountry.bronze;
-      });
-    }
-    console.log(updatedCountry);
-    // find로 나라 이름을 찾은 후 그 값을 새로운 금,은,동으로 바꿔주려고 했음
-    // 동일한 나라이름으로 하고 메달 수를 바꿔도 메달 수는 변함 없음
-    // 나라이름을 바꾸면 undefined가 뜸
-    // 메달 수를 바꿔서 업데이트하는 방법
-    // setCountries([...countries, updatedCountry]);
-    // setCountries([...updatedCountry]);
+  const updateCountryHandler = () => {
+    const newCountries = countries.map((item) => {
+      console.log("업데이트 눌렀을 때 나라 값은", item);
+      if (item.country === country) {
+        return { country, gold, silver, bronze };
+      } else {
+        return item;
+      }
+    });
+    setCountries(newCountries);
   };
 
   return (
@@ -89,8 +83,12 @@ const App = () => {
             <h3>동메달</h3>
             <input type="number" value={bronze} onChange={bronzeMedalCounter} />
           </li>
-          <button onClick={addCountryHandler}>국가 추가</button>
-          <button onClick={updateCountryHandler}>업데이트</button>
+          <button type="button" onClick={addCountryHandler}>
+            국가추가
+          </button>
+          <button type="button" onClick={updateCountryHandler}>
+            업데이트
+          </button>
         </ul>
       </form>
 
