@@ -46,9 +46,9 @@ const App = () => {
   };
 
   //나라 업데이트 함수
-  const updateCountryHandler = () => {
+  const updateCountryHandler = (e) => {
+    e.preventDefault();
     const newCountries = countries.map((item) => {
-      console.log("업데이트 눌렀을 때 나라 값은", item);
       if (item.country === country) {
         return { country, gold, silver, bronze };
       } else {
@@ -83,28 +83,53 @@ const App = () => {
             <h3>동메달</h3>
             <input type="number" value={bronze} onChange={bronzeMedalCounter} />
           </li>
-          <button type="button" onClick={addCountryHandler}>
+          <Button type="button" onClick={addCountryHandler}>
             국가추가
-          </button>
-          <button type="button" onClick={updateCountryHandler}>
+          </Button>
+          <Button type="button" onClick={updateCountryHandler}>
             업데이트
-          </button>
+          </Button>
         </ul>
       </form>
 
-      <>
+      <div>
         {countries.map((country, index) => (
           <ul key={index} className="medal-result">
-            <li className="medal-result-list">{country.country}</li>
-            <li className="medal-result-list">{country.gold}</li>
-            <li className="medal-result-list">{country.silver}</li>
-            <li className="medal-result-list">{country.bronze}</li>
-            <button onClick={() => deleteCountryhandler(index)}>삭제</button>
+            <li className="medal-result-list">
+              <p>{country.country}</p>
+              <p>{country.gold}</p>
+              <p>{country.silver}</p>
+              <p>{country.bronze}</p>
+              <Button
+                type="button"
+                color="#ff6f4b"
+                onClick={() => deleteCountryhandler(index)}
+                className="deleteBtn"
+              >
+                삭제
+              </Button>
+            </li>
           </ul>
         ))}
-      </>
+      </div>
     </div>
   );
 };
 
 export default App;
+
+const Button = ({ children, onClick, color }) => {
+  if (color) {
+    return (
+      <button
+        style={{
+          backgroundColor: color,
+        }}
+        onClick={onClick}
+      >
+        {children}
+      </button>
+    );
+  }
+  return <button onClick={onClick}>{children}</button>;
+};
