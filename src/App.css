@@ -19,17 +19,6 @@ input {
   border: 1px solid #e5e5e5;
 }
 
-button {
-  width: 120px;
-  height: 35px;
-  line-height: 35px;
-  border: none;
-  outline: none;
-  border-radius: 5px;
-  background: #ffc64b;
-  cursor: pointer;
-}
-
 .list-box {
   display: flex;
   justify-content: space-between;
@@ -44,17 +33,4 @@ button {
   flex-direction: column;
   list-style: none;
   padding-left: 0;
-}
-
-.medal-result-list {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  text-align: center;
-  font-size: 14px;
-}
-
-.medal-result-list > p {
-  width: calc(100% / 4);
 }

@@ -1,4 +1,6 @@
 import { useState } from "react";
+import Button from "./components/Button";
+import CountryItem from "./components/CountryItem";
 import "../src/App.css";
 
 const App = () => {
@@ -104,15 +106,13 @@ const App = () => {
 
       <div>
         <ul className="medal-result">
-          {countries.map((countryList) => {
-            return (
-              <CountryList
-                key={countryList.country}
-                countryList={countryList}
-                deleteCountryhandler={deleteCountryhandler}
-              />
-            );
-          })}
+          {countries.map((countryItem) => (
+            <CountryItem
+              key={countryItem.country}
+              countryItem={countryItem}
+              deleteCountryhandler={deleteCountryhandler}
+            />
+          ))}
         </ul>
       </div>
     </div>
@@ -120,39 +120,3 @@ const App = () => {
 };
 
 export default App;
-
-const CountryList = ({ countryList, deleteCountryhandler }) => {
-  const { id, country, gold, silver, bronze } = countryList;
-
-  return (
-    <li key={country.id} className="medal-result-list">
-      <p>{country}</p>
-      <p>{gold}</p>
-      <p>{silver}</p>
-      <p>{bronze}</p>
-      <Button
-        type="button"
-        color="#ff6f4b"
-        onClick={() => deleteCountryhandler(id)}
-      >
-        삭제
-      </Button>
-    </li>
-  );
-};
-
-const Button = ({ children, onClick, color }) => {
-  if (color) {
-    return (
-      <button
-        style={{
-          backgroundColor: color,
-        }}
-        onClick={onClick}
-      >
-        {children}
-      </button>
-    );
-  }
-  return <button onClick={onClick}>{children}</button>;
-};
