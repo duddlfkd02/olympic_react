@@ -1,8 +1,78 @@
-# React + Vite
+# Olympic Medal Tracker 🏅
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+- **과제 기간** : 24.08.10 ~ 24.08.13
+- **구현 기능**
 
-Currently, two official plugins are available:
+  - 제출 폼 UI 구현하기
+  - 메달 집계 CRUD 구현하기
+  - 금메달 기준 내림차순 정렬하기
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **사용 메소드** : map, filter, sort
+- 💻 **기술 스택** <br>
+
+    <img src="https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=React&logoColor=black"/>
+    <img src="https://img.shields.io/badge/Visual Studio Code-007ACC?style=flat-square&logo=Visual Studio Code&logoColor=white"/>
+    <img src="https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=GitHub&logoColor=white"/>
+
+<br>
+
+---
+
+## 👩🏻‍💻 과제 질문 답변
+
+**❓. JSX 문법이란 무엇일까요?** <br>
+
+💡. `JSX 문법`은 HTML 태그를 javascript에서도 사용할 수 있는 문법입니다.<br>
+jsx파일에서 html 태그를 사용하면 html파일에서 마크업 하듯이 똑같은 작업을 할 수 있습니다.<br>
+단, 지켜야할 주의사항이 있습니다. <br>
+첫번째 : 자바스크립트 값을 가져오려면 중괄호{} 를 사용해야합니다.
+두번째 : html 태그는 반드시 닫아주어야 합니다.
+세번째 : 한 개의 element만 반환함을 알고 UI 태그를 작성해야합니다.
+
+<br>
+<br>
+
+**❓. 사용자가 입력하는 값, 또는 이미 입력된 값, 메달 정보와 같은 애플리케이션의 상태를 관리하기(추가, 변경, 삭제) 위해 리액트의 어떤 기능을 사용하셨나요?** <br>
+
+💡. `input`에는 입력 값 이벤트를 감지하는 `onChange` 이벤트를 사용하였습니다.
+`button`에는 `type`을 지정하여 새로고침이 되지 않게 하고, `form` 태그 전체에 `onSubmit` 이벤트를 부여 후 `e.prevenstDefault`로 새로고침을 방지하였습니다.
+클릭 이벤트가 발생하는 위치에는 `onClick` 이벤트를 사용하였습니다.
+
+상태관리를 위해 `useState` 사용하였습니다.
+생성한 `state`는 `[국가명, 금메달, 은메달, 동메달, 전체목록]`이 보여지는 부분으로 총 5개를 만들었습니다.
+
+<br>
+<br>
+
+**❓. 애플리케이션의 상태 값들을 컴포넌트 간 어떤 방식으로 공유하셨나요?** <br>
+💡.
+
+<br>
+<br>
+
+**❓. 기능 구현을 위해 불변성 유지가 필요한 부분이 있었다면 하나만 설명해 주세요.**<br>
+
+💡. 국가를 추가하거나 업데이트를 할 때 이미 들어있던 `state`의 값에 push메소드로 추가하지 않고 `map`,`filter`를 사용하여 복사 후 기능구현을 하였습니다.<br>
+메달 순 정렬을 할 때 `spread Operator`를 사용해서 기존에 있던 배열의 값에 새로운 값을 추가하고 다시 배열로 담아 정렬하였습니다.
+
+<br>
+<br>
+
+**❓. 반복되는 컴포넌트를 파악하고 재사용할 수 있는 컴포넌트로 분리해 보셨나요? 그렇다면 어떠한 이점이 있었나요?** <br>
+
+💡. 강의에서 배웠던 내용을 제대로 이해하고 복습하고자 button 코드를 분리하고 children props를 사용해보았습니다.
+코드가 조금 보기 쉬워진 것 같고 변경될 값이 생겼을 때 수정이 용이하다고 느껴졌습니다.
+
+<br>
+
+---
+
+## 🤯 어려웠던 점 및 아쉬운 점
+
+자바스크립트로 똑같이 로직을 생각하면 되는데 리액트 문법이 낯설고 적응이 안 되어서 더 오래 걸리고 이해가 안 되는 부분도 많았던 것 같습니다.<br>
+
+map 메소드도 여러 번 사용했었는데 리액트에서 사용하려고 하니 갑자기 멍하니 머리가 굳고 어떻게 작성해야할지 막막했습니다.<br>
+
+자바스크립트 개인과제나 팀과제 때처럼 추가기능구현보다는 필수기능구현에 집중하고 강의 내용과 입문 과정의 내용을 제대로 복습하고 이해하는데 목표를 두어 진행하였습니다.<br>
+
+멋지고 다양한 기능이 없는 과제라서 조금 아쉽고 props나 컴포넌트 관리까지 해서 깔끔한 코드를 만들고 싶었는데 그러지 못해 아쉬움이 많습니다.
