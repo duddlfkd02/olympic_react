@@ -9,8 +9,7 @@ const App = () => {
   const [bronze, setBronze] = useState(0);
 
   //국가 및 메달 추가 배열 함수(button)
-  const addCountryHandler = (e) => {
-    e.preventDefault();
+  const addCountryHandler = () => {
     const newCountry = {
       id: new Date().getTime(),
       country: country,
@@ -21,9 +20,8 @@ const App = () => {
     const goldSorted = [...countries, newCountry].sort(
       (a, b) => b.gold - a.gold
     );
-    // console.log(goldSorted);
-    // setCountries([...countries, newCountry]);
     setCountries(goldSorted);
+    setCountry("");
   };
 
   // 국가 입력(input) 함수
@@ -51,8 +49,7 @@ const App = () => {
   };
 
   //나라 업데이트 함수
-  const updateCountryHandler = (e) => {
-    e.preventDefault();
+  const updateCountryHandler = () => {
     const newCountries = countries.map((item) => {
       if (item.country === country) {
         return { country, gold, silver, bronze };
@@ -62,12 +59,18 @@ const App = () => {
     });
     const goldSorted = newCountries.sort((a, b) => b.gold - a.gold);
     setCountries(goldSorted);
+    setCountry("");
   };
 
   return (
     <div className="container">
       <h1>2024 파리 올림픽</h1>
-      <form className="form-list">
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+        }}
+        className="form-list"
+      >
         <ul className="list-box">
           <li className="list">
             <h3>국가명</h3>
@@ -101,21 +104,15 @@ const App = () => {
 
       <div>
         <ul className="medal-result">
-          {countries.map((country) => (
-            <li key={country.country} className="medal-result-list">
-              <p>{country.country}</p>
-              <p>{country.gold}</p>
-              <p>{country.silver}</p>
-              <p>{country.bronze}</p>
-              <Button
-                type="button"
-                color="#ff6f4b"
-                onClick={() => deleteCountryhandler(country.id)}
-              >
-                삭제
-              </Button>
-            </li>
-          ))}
+          {countries.map((countryList) => {
+            return (
+              <CountryList
+                key={countryList.country}
+                countryList={countryList}
+                deleteCountryhandler={deleteCountryhandler}
+              />
+            );
+          })}
         </ul>
       </div>
     </div>
@@ -123,6 +120,26 @@ const App = () => {
 };
 
 export default App;
+
+const CountryList = ({ countryList, deleteCountryhandler }) => {
+  const { id, country, gold, silver, bronze } = countryList;
+
+  return (
+    <li key={country.id} className="medal-result-list">
+      <p>{country}</p>
+      <p>{gold}</p>
+      <p>{silver}</p>
+      <p>{bronze}</p>
+      <Button
+        type="button"
+        color="#ff6f4b"
+        onClick={() => deleteCountryhandler(id)}
+      >
+        삭제
+      </Button>
+    </li>
+  );
+};
 
 const Button = ({ children, onClick, color }) => {
   if (color) {
