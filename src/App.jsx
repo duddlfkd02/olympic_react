@@ -100,9 +100,9 @@ const App = () => {
       </form>
 
       <div>
-        {countries.map((country) => (
-          <ul key={country.id} className="medal-result">
-            <li className="medal-result-list">
+        <ul className="medal-result">
+          {countries.map((country) => (
+            <li key={country.country} className="medal-result-list">
               <p>{country.country}</p>
               <p>{country.gold}</p>
               <p>{country.silver}</p>
@@ -115,8 +115,8 @@ const App = () => {
                 삭제
               </Button>
             </li>
-          </ul>
-        ))}
+          ))}
+        </ul>
       </div>
     </div>
   );
