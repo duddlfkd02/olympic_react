@@ -16,7 +16,7 @@ const App = () => {
       alert("국가명을 입력해주세요");
       return;
     }
-    //기존에 있는 나라의 경우 오류 (find)메소드로 처리
+
     const newCountry = {
       id: new Date().getTime(),
       country: country,
@@ -49,10 +49,16 @@ const App = () => {
 
   // 나라 삭제 함수
   const deleteCountryhandler = (id) => {
-    const deleteCountry = countries.filter((country) => {
-      return country.id !== id;
-    });
-    setCountries(deleteCountry);
+    const deleteCheckAlert = confirm("해당 국가를 삭제하시겠습니까?");
+    if (deleteCheckAlert === true) {
+      alert("삭제되었습니다.");
+      const deleteCountry = countries.filter((country) => {
+        return country.id !== id;
+      });
+      setCountries(deleteCountry);
+    } else {
+      return false;
+    }
   };
 
   //나라 업데이트 함수
