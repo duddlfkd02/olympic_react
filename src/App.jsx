@@ -12,6 +12,11 @@ const App = () => {
 
   //국가 및 메달 추가 배열 함수(button)
   const addCountryHandler = () => {
+    if (!country) {
+      alert("국가명을 입력해주세요");
+      return;
+    }
+    //기존에 있는 나라의 경우 오류 (find)메소드로 처리
     const newCountry = {
       id: new Date().getTime(),
       country: country,
@@ -33,13 +38,13 @@ const App = () => {
 
   //메달 개수 바꾸는 함수
   const goldMedalCounter = (e) => {
-    setGold(e.target.value);
+    setGold(+e.target.value);
   };
   const silverMedalCounter = (e) => {
-    setSilver(e.target.value);
+    setSilver(+e.target.value);
   };
   const bronzeMedalCounter = (e) => {
-    setBronze(e.target.value);
+    setBronze(+e.target.value);
   };
 
   // 나라 삭제 함수
@@ -54,8 +59,9 @@ const App = () => {
   const updateCountryHandler = () => {
     const newCountries = countries.map((item) => {
       if (item.country === country) {
-        return { country, gold, silver, bronze };
+        return { id: item.id, country, gold, silver, bronze };
       } else {
+        alert("업데이트 할 국가가 없습니다.");
         return item;
       }
     });
@@ -108,7 +114,7 @@ const App = () => {
         <ul className="medal-result">
           {countries.map((countryItem) => (
             <CountryItem
-              key={countryItem.country}
+              key={countryItem.id}
               countryItem={countryItem}
               deleteCountryhandler={deleteCountryhandler}
             />

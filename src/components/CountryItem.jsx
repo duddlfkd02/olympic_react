@@ -5,7 +5,7 @@ const CountryItem = ({ countryItem, deleteCountryhandler }) => {
   const { id, country, gold, silver, bronze } = countryItem;
 
   return (
-    <li key={country.id} className={`${style.medalResultList}`}>
+    <li className={`${style.medalResultList}`}>
       <p>{country}</p>
       <p>{gold}</p>
       <p>{silver}</p>
